@@ -3,14 +3,8 @@ export interface ITodo {
     task: string
 }
 
-export const dummyTodoList: ITodo[] = [
-    {
-        id: 1,
-        task: "Task 1"
-    }
-]
-
 export enum PageEnum {
     list,
     add,
+    edit
 }

@@ -4,10 +4,12 @@ import "./TodoList.style.css";
 
 type Props = {
   list: ITodo[];
+  onDeleteBtn: (data: ITodo) => void;
+  onEditBtn: (data: ITodo) => void;
 }
 
 const TodoList = (props: Props) => {
-  const {list} = props;
+  const {list, onDeleteBtn, onEditBtn} = props;
   return (
     <div>
       <table>
@@ -21,8 +23,8 @@ const TodoList = (props: Props) => {
           <td>{todo.task}</td>
           <td>
             <div>
-              <input type="button" value="edit"/>
-              <input type="button" value="delete"/>
+              <input type="button" value="edit" onClick={() => onEditBtn(todo)} />
+              <input type="button" value="delete" onClick={() => onDeleteBtn(todo)}/>
             </div>
           </td>
         </tr>
