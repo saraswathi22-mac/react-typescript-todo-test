@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import TodoList from "./components/TodoList";
 import { ITodo, PageEnum } from "./components/Todo.type";
 import AddTodo from "./components/AddTodo";
@@ -9,6 +9,12 @@ function App() {
   const [showPage, setShowPage] = useState(PageEnum.list);
   const [dataToEdit, setDataToEdit] = useState({} as ITodo);
 
+  useEffect(() => {
+    const listInString = window.localStorage.getItem("TodoList");
+    if(listInString) {
+      _setTodoList(JSON.parse(listInString))
+    }
+  }, [])
   const onAddTodoClickHandle = () => {
     setShowPage(PageEnum.add);
   };
@@ -17,7 +23,7 @@ function App() {
   };
   const _setTodoList = (list: ITodo[]) => {
     setTodoList(list)
-    window.localStorage.setItem("Todo List", JSON.stringify(list))
+    window.localStorage.setItem("TodoList", JSON.stringify(list))
   }
   const onAddTodo = (data: ITodo) => {
     _setTodoList([...todoList, data]);
